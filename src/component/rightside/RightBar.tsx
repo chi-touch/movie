@@ -3,30 +3,30 @@ import Image from 'next/image'
 
 export default function RightBar() {
     const continueWatching = [
-        { id: 1, title: 'WandaVision', episode: '1 Episode left', progress: 70, image: '/wandavision.jpg' },
-        { id: 2, title: 'Rick and Morty', episode: '2 Episode left', progress: 40, image: '/rickandmorty.jpg' },
+        { id: 1, title: 'WandaVision', episode: '1 Episode left', progress: 70, image: '/myPic.jpg' },
+        { id: 2, title: 'Rick and Morty', episode: '2 Episode left', progress: 40, image: '/myPic.jpg' },
     ]
 
     const topRated = [
-        { id: 1, title: 'Supernatural', episodes: '320 Ep', genre: 'Horror, Fantasy', image: '/supernatural.jpg' },
-        { id: 2, title: 'Rick and Morty', episodes: '49 Ep', genre: 'Sci-Fi', image: '/rickandmorty.jpg' },
+        { id: 1, title: 'Supernatural', episodes: '320 Ep', genre: 'Horror, Fantasy', image: '/myPic.jpg' },
+        { id: 2, title: 'Rick and Morty', episodes: '49 Ep', genre: 'Sci-Fi', image: '/myPic.jpg' },
     ]
 
     const genres = [
-        { id: 1, title: 'Drama', image: '/drama.jpg' },
-        { id: 2, title: 'Sitcom', image: '/sitcom.jpg' },
-        { id: 3, title: 'Suspense', image: '/suspense.jpg' },
+        { id: 1, title: 'Drama', image: '/myPic.jpg' },
+        { id: 2, title: 'Sitcom', image: '/myPic.jpg' },
+        { id: 3, title: 'Suspense', image: '/myPic.jpg' },
     ]
 
     return (
-        <div className="w-[300px] bg-sidebar h-full flex flex-col p-5 border-l border-white/5 bg-[#21242D] overflow-y-auto no-scrollbar">
+        <div className="w-[300px] bg-sidebar h-full flex flex-col p-5 border-l border-white/5 bg-[#21242D] overflow-hidden no-scrollbar">
             <div className="flex items-center justify-between mb-8">
                 <button className="p-3 rounded-2xl bg-[#2b2d38] text-gray-400 hover:text-white transition-colors relative">
                     <Bell size={20} />
                     <span className="absolute top-3 right-3 w-2 h-2 bg-red-500 rounded-full border border-[#2b2d38]" />
                 </button>
                 <div className="flex items-center gap-3">
-                    <div className='flex items-center gap-1 cursor-pointer hover:text-gray-300'>
+                    <div className='flex items-center gap-1 cursor-pointer text-white'>
                         <span className="text-sm font-medium">Samantha</span>
                         <ChevronDown size={16} />
                     </div>
@@ -54,9 +54,9 @@ export default function RightBar() {
 
                 <div className="flex overflow-hidden relative gap-4 pb-1">
                     {continueWatching.map((item) => (
-                        <div key={item.id} className="w-[160px] h-[120px] bg-[#2b2d38] mb-8 rounded-3xl p-3 group hover:bg-[#343744] transition-colors shrink-0 flex flex-col justify-between">
+                        <div key={item.id} className="w-[150px] h-[100px] bg-[#2b2d38]  border-[1px solid #F9F9F91A] mb-8 rounded-3xl p-3 group hover:bg-[#343744] transition-colors shrink-0 flex flex-col justify-between">
                             <div className="flex gap-3">
-                                <div className="w-14 h-14 bg-gray-700 rounded-2xl relative shrink-0 overflow-hidden">
+                                <div className="w-14 h-12 bg-gray-700 rounded-2xl relative shrink-0 overflow-hidden">
                                     <Image src={item.image} alt={item.title} fill className="object-cover" />
                                 </div>
                                 <div className='flex-1 min-w-0 flex flex-col justify-center gap-1'>
@@ -68,9 +68,9 @@ export default function RightBar() {
                                 </div>
                             </div>
 
-                            <div className='flex gap-2 w-full'>
-                                <button className="flex-1 bg-[#373a48] text-gray-300 text-[10px] py-1 rounded-xl font-bold hover:bg-gray-600 transition-colors">Drop</button>
-                                <button className="flex-1 bg-teal-400 text-black text-[10px] py-1 rounded-xl font-bold hover:bg-teal-500 transition-colors">Watch</button>
+                            <div className='flex gap-2  '>
+                                <button className="flex-1 h-[40px] w-[55px] bg-[#373a48] rounded-xl text-gray-300 text-[10px] py-1  font-bold hover:bg-gray-600 transition-colors">Drop</button>
+                                <button className="flex-1 h-[40px] w-[55px] bg-teal-400 text-black text-[10px] py-1 rounded-xl font-bold hover:bg-teal-500 transition-colors">Watch</button>
                             </div>
                         </div>
                     ))}
@@ -87,7 +87,7 @@ export default function RightBar() {
 
                 <div className="flex overflow-hidden relative gap-4 pb-1">
                     {topRated.map((item) => (
-                        <div key={item.id} className="w-[160px] h-[150px] bg-[#2b2d38] rounded-3xl overflow-hidden relative shrink-0 group">
+                        <div key={item.id} className="w-[150px] h-[100px] bg-[#2b2d38] rounded-3xl overflow-hidden relative shrink-0 group">
                             <Image src={item.image} alt={item.title} fill className="object-cover transition-transform group-hover:scale-105" />
                             <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
 
@@ -119,15 +119,43 @@ export default function RightBar() {
                     </div>
                 </div>
 
-                <div className="grid grid-cols-2 gap-3">
-                    {genres.map((item) => (
-                        <div key={item.id} className="h-16 rounded-2xl flex items-center justify-center font-bold text-xs relative overflow-hidden group cursor-pointer">
-                            <Image src={item.image} alt={item.title} fill className="object-cover transition-transform group-hover:scale-110" />
-                            <div className={`absolute inset-0 ${item.id === 1 ? 'bg-blue-900/60' : item.id === 2 ? 'bg-red-900/60' : 'bg-purple-900/60'} backdrop-blur-[1px]`} />
-                            <span className="relative z-10 text-white shadow-sm">{item.title}</span>
-                        </div>
-                    ))}
+
+                <div className='flex flex-col gap-4'>
+                    <div className="flex overflow-hidden relative gap-4 pb-1">
+                        {genres.map((item) => (
+                            <div key={item.id} className="w-[150px] h-[100px] bg-[#2b2d38] rounded-3xl overflow-hidden relative shrink-0 group">
+                                <Image src={item.image} alt={item.title} fill className="object-cover transition-transform group-hover:scale-105" />
+                                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
+
+                                <div className="absolute bottom-8 right-13 p-3 flex flex-col gap-2">
+                                    <div>
+                                        <h4 className="font-bold text-xs text-white">{item.title}</h4>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+
+                    <div className="flex overflow-hidden relative gap-4 pb-1">
+                        {genres.map((item) => (
+                            <div key={item.id} className="w-[150px] h-[100px] bg-[#2b2d38] rounded-3xl overflow-hidden relative shrink-0 group">
+                                <Image src={item.image} alt={item.title} fill className="object-cover transition-transform group-hover:scale-105" />
+                                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
+
+                                <div className="absolute bottom-8 right-13 p-3 flex flex-col gap-2">
+                                    <div>
+                                        <h4 className="font-bold text-xs text-white">{item.title}</h4>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        ))}
+                    </div>
                 </div>
+
             </div>
         </div>
     )
