@@ -57,16 +57,20 @@ export default function Home() {
       </div>
 
 
-      <div className="relative w-full h-[700px] rounded-3xl overflow-hidden group">
+      <div className="relative w-full h-[700px] rounded-3xl group">
         {topVideo.map((item) => (
+          // <div key={item.id} className="w-14 h-12 bg-gray-700 rounded-2xl relative shrink-0 overflow-hidden">
           <div key={item.id} className="relative w-full h-full">
-            <Image
-              src={item.image}
-              alt={item.title}
-              fill
-              className="object-cover"
-              priority
-            />
+
+            <div className="w-full h-90 bg-gray-700 rounded-2xl relative shrink-0 overflow-hidden">
+              <Image
+                src={item.image}
+                alt={item.title}
+                fill
+                className="object-cover"
+                priority
+              />
+            </div>
 
             <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/20 to-transparent" />
             <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
@@ -90,13 +94,13 @@ export default function Home() {
                     <Plus size={18} />
                     Watchlist
                   </button>
-                  <div className="flex gap-2 pb-2 ml-10">
+                  <div className="flex gap-2 pb-2 ml-30">
                     <div className="w-2 h-2 rounded-full bg-teal-400" />
                     <div className="w-2 h-2 rounded-full bg-white" />
                     <div className="w-2 h-2 rounded-full bg-white/50" />
                   </div>
 
-                  <button className="flex items-center ml-10 mr-40 gap-2 px-8 py-3 bg-teal-400 rounded-xl text-black font-bold text-sm hover:bg-teal-500 transition-colors">
+                  <button className="flex items-center ml-30 gap-2 px-8 py-3 bg-teal-400 rounded-xl text-black font-bold text-sm hover:bg-teal-500 transition-colors">
                     Watch Now
                   </button>
                 </div>
