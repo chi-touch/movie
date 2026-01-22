@@ -29,12 +29,8 @@ export default function RootLayout({
       <body
         className={`${schibstedGrotesk.variable} ${martianMono.variable} antialiased`}
       >
-        <div className="flex h-screen overflow-hidden" >
-          <SideBar />
-          <main className="flex-1 overflow-hidden p-8 bg-black">
-            {children}
-          </main>
-          <RightBar />
+        <div className="h-screen overflow-hidden bg-black" >
+          {children}
         </div>
       </body>
     </html>

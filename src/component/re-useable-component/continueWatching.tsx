@@ -29,7 +29,8 @@ export default function ContinueWatching() {
     return (
         <div className="flex overflow-hidden relative gap-4 pb-1">
             {continueWatching.map((item) => (
-                <div key={item.id} className="w-[150px] h-[100px] bg-[#2b2d38]  border-[1px solid #F9F9F91A] mb-8 rounded-3xl p-3 group hover:bg-[#343744] transition-colors shrink-0 flex flex-col justify-between">
+                // <div key={item.id} className="w-[150px] h-[120px] bg-[#16181e] border-[1px_solid_#F9F9F91A] rounded-3xl p-3 group hover:bg-[#343744] transition-colors shrink-0 flex flex-col justify-between">
+                <div key={item.id} className="w-[150px] h-[120px] bg-[#16181e] border-[1px_solid_#F9F9F91A] rounded-3xl p-3 group hover:bg-[#343744] transition-colors shrink-0 flex flex-col justify-between">
                     <div className="flex gap-3">
                         <div className="w-14 h-12 bg-gray-700 rounded-2xl relative shrink-0 overflow-hidden">
                             <Image src={item.image} alt={item.title} fill className="object-cover" />
