@@ -19,7 +19,7 @@ export default function ContinueWatching() {
         },
         {
             id: 2,
-            title: 'Rick and Morty',
+            title: 'Rick and Morty',    
             episode: '2 Episode left',
             progress: 40,
             image: '/myPic.jpg'
@@ -27,9 +27,8 @@ export default function ContinueWatching() {
     ]
 
     return (
-        <div className="flex overflow-hidden relative gap-4 pb-1">
+        <div className="flex overflow-x-auto scrollbar-hide relative gap-4 pb-1">
             {continueWatching.map((item) => (
-                // <div key={item.id} className="w-[150px] h-[120px] bg-[#16181e] border-[1px_solid_#F9F9F91A] rounded-3xl p-3 group hover:bg-[#343744] transition-colors shrink-0 flex flex-col justify-between">
                 <div key={item.id} className="w-[150px] h-[120px] bg-[#16181e] border-[1px_solid_#F9F9F91A] rounded-3xl p-3 group hover:bg-[#343744] transition-colors shrink-0 flex flex-col justify-between">
                     <div className="flex gap-3">
                         <div className="w-14 h-12 bg-gray-700 rounded-2xl relative shrink-0 overflow-hidden">

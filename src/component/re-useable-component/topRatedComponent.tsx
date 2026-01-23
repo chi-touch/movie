@@ -1,17 +1,50 @@
 import Image from 'next/image'
 import { Plus } from 'lucide-react'
+import { forwardRef, useImperativeHandle, useRef } from 'react'
 
-export default function TopRatedComponent() {
+interface TopRatedItem {
+    id: number
+    title: string
+    episodes: string
+    genre: string
+    image: string
+}
 
+export interface TopRatedRef {
+    scrollNext: () => void;
+    scrollPrev: () => void;
+}
 
-    const topRated = [
+const TopRatedComponent = forwardRef<TopRatedRef>((props, ref) => {
+    const scrollContainerRef = useRef<HTMLDivElement>(null);
+
+    const topRated: TopRatedItem[] = [
         { id: 1, title: 'Supernatural', episodes: '320 Ep', genre: 'Horror, Fantasy', image: '/myPic.jpg' },
         { id: 2, title: 'Rick and Morty', episodes: '49 Ep', genre: 'Sci-Fi', image: '/myPic.jpg' },
+        { id: 3, title: 'Supernatural', episodes: '320 Ep', genre: 'Horror, Fantasy', image: '/myPic.jpg' },
+        { id: 4, title: 'Rick and Morty', episodes: '49 Ep', genre: 'Sci-Fi', image: '/myPic.jpg' },
+        { id: 5, title: 'Supernatural', episodes: '320 Ep', genre: 'Horror, Fantasy', image: '/myPic.jpg' },
+        { id: 6, title: 'Rick and Morty', episodes: '49 Ep', genre: 'Sci-Fi', image: '/myPic.jpg' },
     ]
 
-    return (
+    useImperativeHandle(ref, () => ({
+        scrollNext: () => {
+            if (scrollContainerRef.current) {
+                scrollContainerRef.current.scrollBy({ left: 300, behavior: 'smooth' });
+            }
+        },
+        scrollPrev: () => {
+            if (scrollContainerRef.current) {
+                scrollContainerRef.current.scrollBy({ left: -300, behavior: 'smooth' });
+            }
+        }
+    }));
 
-        <div className="flex overflow-hidden relative gap-4 pb-1">
+    return (
+        <div
+            ref={scrollContainerRef}
+            className="flex overflow-x-auto no-scrollbar relative gap-4 pb-1 scroll-smooth"
+        >
             {topRated.map((item) => (
                 <div key={item.id} className="w-[150px] h-[100px] bg-[#2b2d38] rounded-3xl overflow-hidden relative shrink-0 group">
                     <Image src={item.image} alt={item.title} fill className="object-cover transition-transform group-hover:scale-105" />
@@ -35,7 +68,9 @@ export default function TopRatedComponent() {
                 </div>
             ))}
         </div>
-
     )
+})
 
-}
+TopRatedComponent.displayName = 'TopRatedComponent';
+
+export default TopRatedComponent;

@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import { Martian_Mono, Schibsted_Grotesk } from "next/font/google";
 import "./globals.css";
-import SideBar from "@/component/sidebarfolder/SideBar";
-import RightBar from "@/component/rightside/RightBar";
+
 
 const schibstedGrotesk = Schibsted_Grotesk({
   variable: "--font-schibsted-grotesk",
@@ -29,7 +28,7 @@ export default function RootLayout({
       <body
         className={`${schibstedGrotesk.variable} ${martianMono.variable} antialiased`}
       >
-        <div className="h-screen overflow-hidden bg-black" >
+        <div className="h-screen  bg-black" >
           {children}
         </div>
       </body>

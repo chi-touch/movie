@@ -1,71 +1,118 @@
 "use client"
+import * as React from "react"
 import Image from "next/image"
-import { ChevronLeft, ChevronRight, Plus } from "lucide-react"
+import { Plus, Play } from "lucide-react"
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+  type CarouselApi,
+} from "@/components/ui/carousel"
 
 export default function TopVideo() {
-  const topVideo = [
-    { id: 1, title: 'The Crown', image: '/myPic.jpg' }
+  const [api, setApi] = React.useState<CarouselApi>()
+  const [current, setCurrent] = React.useState(0)
+  const [count, setCount] = React.useState(0)
+
+  const slides = [
+    {
+      id: 1,
+      title: 'The Crown',
+      image: '/myPic.jpg',
+    },
+    {
+      id: 2,
+      title: 'Stranger Things',
+      image: '/st.jpg',
+    },
+    {
+      id: 3,
+      title: 'The Mandalorian',
+      image: '/m.jpg',
+    },
   ]
 
+  React.useEffect(() => {
+    if (!api) {
+      return
+    }
+
+    setCount(api.scrollSnapList().length)
+    setCurrent(api.selectedScrollSnap())
+
+    api.on("select", () => {
+      setCurrent(api.selectedScrollSnap())
+    })
+  }, [api])
+
   return (
-    // <div className="relative w-full rounded-3xl group">
-    // <div className="relative rounded-[20px] group overflow-hidden">
-    <div className="flex rounded-[20px] overflow-hidden relative gap-4 pb-1">
-      {topVideo.map((item) => (
-        // <div key={item.id} className="w-14 h-12 bg-gray-700 rounded-2xl relative shrink-0 overflow-hidden">
-        <div key={item.id} className=" w-full">
+    <div className="relative group">
+      <Carousel
+        setApi={setApi}
+        opts={{
+          loop: true,
+        }}
+        className="w-full"
+      >
+        <CarouselContent className="-ml-0">
+          {slides.map((slide) => (
+            <CarouselItem key={slide.id} className="pl-0">
+              <div className="relative w-full h-[500px] rounded-[20px] overflow-hidden">
+                <Image
+                  src={slide.image}
+                  alt={slide.title}
+                  fill
+                  className="object-cover"
+                  priority
+                />
 
-          {/* <div className="w-full h-90 bg-gray-700 rounded-2xl relative shrink-0 overflow-hidden"> */}
-          
+                <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/20 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
 
-          <div className="w-full rounded-2xl overflow-hidden shrink-0">
-            <div className="relative w-full h-[750px] ">
-            <Image
-            src={item.image}
-            alt={item.title}
-            fill
-            className="object-cover"
-            priority
-          />
-          </div>
-          </div>
+                <div className="absolute inset-0 p-12 flex flex-col justify-between">
+                  <h1 className="text-6xl font-black text-white max-w-md tracking-tight">
+                    {slide.title}
+                  </h1>
 
+                  <div className="flex items-center justify-between gap-20 ">
+                    <button className="flex items-center px-8 py-3.5 bg-white/10 backdrop-blur-md rounded-2xl text-white font-bold text-sm hover:bg-white/20 transition-all border border-white/10 gap-2">
+                      <Plus size={18} />
+                      Watchlist
+                    </button>
 
-          <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/20 to-transparent" />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+                    <div className="flex gap-2.5 pb-2">
+                      {Array.from({ length: count }).map((_, index) => (
+                        <button
+                          key={index}
+                          onClick={() => api?.scrollTo(index)}
+                          className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${current === index
+                              ? "bg-teal-400 w-6"
+                              : "bg-white/50 hover:bg-white"
+                            }`}
+                        />
+                      ))}
+                    </div>
 
-          <div className="absolute inset-x-4 top-1/2 -translate-y-1/2 flex justify-between z-10 opacity-0 group-hover:opacity-100 transition-opacity">
-            <button className="w-10 h-10 bg-white/10 backdrop-blur-md rounded-xl flex items-center justify-center hover:bg-white/20 transition-colors text-white">
-              <ChevronLeft size={20} />
-            </button>
-            <button className="w-10 h-10 bg-white/10 backdrop-blur-md rounded-xl flex items-center justify-center hover:bg-white/20 transition-colors text-white">
-              <ChevronRight size={20} />
-            </button>
-          </div>
-
-
-          <div className="absolute inset-0 p-12 flex flex-col justify-between">
-            <h1 className="text-6xl font-black text-white max-w-md tracking-tight">{item.title}</h1>
-
-
-            <div className="flex justify-center gap-15">
-              <button className="flex items-center px-8 py-3.5 bg-white/10 backdrop-blur-md rounded-2xl text-white font-bold text-sm hover:bg-white/20 transition-all border border-white/10">
-                <Plus size={18} />
-                Watchlist
-              </button>
-              <div className="flex gap-2.5 pb-2">
-                <div className="w-2.5 h-2.5 rounded-full bg-teal-400" />
-                <div className="w-2.5 h-2.5 rounded-full bg-white" />
-                <div className="w-2.5 h-2.5 rounded-full bg-white/50" />
+                    <button className="flex items-center gap-2 px-10 py-3.5 bg-teal-400 rounded-2xl text-black font-bold text-sm hover:bg-teal-500 transition-all shadow-lg shadow-teal-400/20">
+                      <Play size={18} />
+                      Watch Now
+                    </button>
+                  </div>
+                </div>
               </div>
-              <button className="flex items-center gap-2 px-10 py-3.5 bg-teal-400 rounded-2xl text-black font-bold text-sm hover:bg-teal-500 transition-all shadow-lg shadow-teal-400/20">
-                Watch Now
-              </button>
-            </div>
-          </div>
-        </div>
-      ))}
-    </div>
+            </CarouselItem>
+          ))}
+        </CarouselContent>
 
+        <CarouselPrevious
+          className="left-4 bg-white/10 backdrop-blur-md border-0 text-white hover:bg-white/20 w-10 h-10 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"
+        />
+        <CarouselNext
+          className="right-4 bg-white/10 backdrop-blur-md border-0 text-white hover:bg-white/20 w-10 h-10 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"
+        />
+      </Carousel>
+    </div>
   )
 }
