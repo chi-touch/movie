@@ -5,6 +5,7 @@ import Image from 'next/image'
 import ContinueWatching, { ContinueWatchingRef } from '../re-useable-component/continueWatching'
 import TopRatedComponent, { TopRatedRef } from '../re-useable-component/topRatedComponent'
 import Genres, { GenresRef } from '../re-useable-component/genres'
+import SectionHeader from '../re-useable-component/SectionHeader'
 
 export default function RightBar() {
     const [isProfileOpen, setIsProfileOpen] = useState(false)
@@ -63,76 +64,31 @@ export default function RightBar() {
             </div>
 
             <div>
-                <div className="flex items-center justify-between mb-4">
-                    <div className="flex items-center gap-2">
-                        <h3 className="font-bold text-lg text-white">Continue</h3>
-                        <div className='flex items-center gap-1 text-gray-400'>
-                            <ChevronLeft
-                                size={16}
-                                className="cursor-pointer hover:text-white"
-                                onClick={() => continueWatchingRef.current?.scrollPrev()}
-                            />
-                            <ChevronRight
-                                size={16}
-                                className="cursor-pointer hover:text-white"
-                                onClick={() => continueWatchingRef.current?.scrollNext()}
-                            />
-                        </div>
-                    </div>
-                    <div className="flex items-center gap-1 text-gray-400 text-xs font-bold cursor-pointer hover:text-white ">
-                        See More <ChevronRight size={14} />
-                    </div>
-                </div>
+                <SectionHeader
+                    title="Continue"
+                    onPrev={() => continueWatchingRef.current?.scrollPrev()}
+                    onNext={() => continueWatchingRef.current?.scrollNext()}
+                />
 
                 <ContinueWatching ref={continueWatchingRef} />
             </div>
 
             <div className="mb-6 mt-4">
-                <div className="flex items-center justify-between mb-4">
-                    <div className="flex items-center gap-2">
-                        <h3 className="font-bold text-lg text-white">Top Rated</h3>
-                        <div className='flex items-center gap-1 text-gray-400'>
-                            <ChevronLeft
-                                size={16}
-                                className="cursor-pointer hover:text-white"
-                                onClick={() => topRatedRef.current?.scrollPrev()}
-                            />
-                            <ChevronRight
-                                size={16}
-                                className="cursor-pointer hover:text-white"
-                                onClick={() => topRatedRef.current?.scrollNext()}
-                            />
-                        </div>
-                    </div>
-                    <div className="flex items-center gap-2 text-gray-400 text-xs font-bold cursor-pointer hover:text-white">
-                        See More <ChevronRight size={14} />
-                    </div>
-                </div>
+                <SectionHeader
+                    title="Top Rated"
+                    onPrev={() => topRatedRef.current?.scrollPrev()}
+                    onNext={() => topRatedRef.current?.scrollNext()}
+                />
 
                 <TopRatedComponent ref={topRatedRef} />
             </div>
 
             <div className="mb-6 mt-4">
-                <div className="flex items-center justify-between mb-4">
-                    <div className="flex items-center gap-2">
-                        <h3 className="font-bold text-lg text-white">Genres</h3>
-                        <div className='flex items-center gap-1 text-gray-400'>
-                            <ChevronLeft
-                                size={16}
-                                className="cursor-pointer hover:text-white"
-                                onClick={() => genresRef.current?.scrollPrev()}
-                            />
-                            <ChevronRight
-                                size={16}
-                                className="cursor-pointer hover:text-white"
-                                onClick={() => genresRef.current?.scrollNext()}
-                            />
-                        </div>
-                    </div>
-                    <div className="flex items-center gap-1 text-gray-400 text-xs font-bold cursor-pointer hover:text-white">
-                        See More <ChevronRight size={14} />
-                    </div>
-                </div>
+                <SectionHeader
+                    title="Genres"
+                    onPrev={() => genresRef.current?.scrollPrev()}
+                    onNext={() => genresRef.current?.scrollNext()}
+                />
 
                 <Genres ref={genresRef} />
             </div>

@@ -1,3 +1,5 @@
+'use client'
+import { forwardRef, useImperativeHandle, useRef } from 'react'
 import Image from 'next/image'
 
 interface ContinueWatchingItem {
@@ -8,7 +10,14 @@ interface ContinueWatchingItem {
     image: string
 }
 
-export default function ContinueWatching() {
+export interface ContinueWatchingRef {
+    scrollNext: () => void;
+    scrollPrev: () => void;
+}
+
+const ContinueWatching = forwardRef<ContinueWatchingRef>((props, ref) => {
+    const scrollContainerRef = useRef<HTMLDivElement>(null);
+
     const continueWatching: ContinueWatchingItem[] = [
         {
             id: 1,
@@ -19,15 +28,31 @@ export default function ContinueWatching() {
         },
         {
             id: 2,
-            title: 'Rick and Morty',    
+            title: 'Rick and Morty',
             episode: '2 Episode left',
             progress: 40,
             image: '/myPic.jpg'
         },
     ]
 
+    useImperativeHandle(ref, () => ({
+        scrollNext: () => {
+            if (scrollContainerRef.current) {
+                scrollContainerRef.current.scrollBy({ left: 200, behavior: 'smooth' });
+            }
+        },
+        scrollPrev: () => {
+            if (scrollContainerRef.current) {
+                scrollContainerRef.current.scrollBy({ left: -200, behavior: 'smooth' });
+            }
+        }
+    }));
+
     return (
-        <div className="flex overflow-x-auto scrollbar-hide relative gap-4 pb-1">
+        <div
+            ref={scrollContainerRef}
+            className="flex overflow-x-auto no-scrollbar relative gap-4 pb-1 scroll-smooth"
+        >
             {continueWatching.map((item) => (
                 <div key={item.id} className="w-[150px] h-[120px] bg-[#16181e] border-[1px_solid_#F9F9F91A] rounded-3xl p-3 group hover:bg-[#343744] transition-colors shrink-0 flex flex-col justify-between">
                     <div className="flex gap-3">
@@ -51,4 +76,8 @@ export default function ContinueWatching() {
             ))}
         </div>
     )
-}
+})
+
+ContinueWatching.displayName = 'ContinueWatching';
+
+export default ContinueWatching;

@@ -25,6 +25,7 @@ const Genres = forwardRef<GenresRef>((props, ref) => {
         { id: 7, title: 'Supernatural', image: '/myPic.jpg' },
         { id: 8, title: 'Anime', image: '/myPic.jpg' },
         { id: 9, title: 'Sci-Fi', image: '/myPic.jpg' },
+        { id: 10, title: 'Science', image: '/myPic.jpg' },
     ]
 
     useImperativeHandle(ref, () => ({

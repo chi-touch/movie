@@ -28,9 +28,12 @@ export default function RootLayout({
       <body
         className={`${schibstedGrotesk.variable} ${martianMono.variable} antialiased`}
       >
-        <div className="h-screen  bg-black" >
+       
           {children}
-        </div>
+       
+        {/* <div className="h-screen  bg-black" >
+          {children}
+        </div> */}
       </body>
     </html>
   );

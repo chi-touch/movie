@@ -8,9 +8,9 @@ export default function MovieLayout({
     children: React.ReactNode;
 }) {
     return (
-        <div className="flex h-screen overflow-hidden bg-black">
-            <SideBar />
-            <main className="flex-1 overflow-y-auto no-scrollbar">
+        <div className="flex h-screen bg-black">
+            <SideBar /> 
+            <main className="flex-1 overflow-y-auto no-scrollbar ">
                 <div className="px-8">
                     {children}
                 </div>

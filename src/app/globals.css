@@ -6,7 +6,7 @@
 :root {
   /* --foreground: #171717; */
   --radius: 0.625rem;
-  --background: oklch(1 0 0);
+  --background: oklch(95.901% 0.00535 16.13);
   --foreground: oklch(0.145 0 0);
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.145 0 0);
@@ -20,15 +20,15 @@
   --muted-foreground: oklch(0.556 0 0);
   --accent: oklch(0.97 0 0);
   --accent-foreground: oklch(0.205 0 0);
-  --destructive: oklch(0.577 0.245 27.325);
+  --destructive: oklch(95.076% 0.00645 16.348);
   --border: oklch(0.922 0 0);
   --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
+  --ring: oklch(55.98% 0.22144 28.433);
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
   --chart-3: oklch(0.398 0.07 227.392);
   --chart-4: oklch(0.828 0.189 84.429);
-  --chart-5: oklch(0.769 0.188 70.08);
+  --chart-5: oklch(61.404% 0.30382 314.222);
   --sidebar: oklch(0.985 0 0);
   --sidebar-foreground: oklch(0.145 0 0);
   --sidebar-primary: oklch(0.205 0 0);
@@ -91,6 +91,7 @@
 body {
   margin: 0;
   /* overflow-y: auto; */
+
 }
 
 @layer base {
@@ -99,22 +100,39 @@ body {
   }
 
   body {
-    @apply bg-background text-white;
+    @apply bg-black text-white;
+
   }
 }
 
 @utility scrollbar-hide {
+
   /* -ms-overflow-style: none; */
-    /* scrollbar-width: thin; */
+  /* scrollbar-width: thin; */
   &::-webkit-scrollbar {
     display: none;
   }
 }
 
 @utility no-scrollbar {
+
   /* -ms-overflow-style: none; */
-    /* scrollbar-width: none; */
-    &::-webkit-scrollbar {
+  /* scrollbar-width: none; */
+  &::-webkit-scrollbar {
     display: none;
   }
+}
+
+#fixMeDetectBox,
+#superDeveloper111,
+[class*="controlbar_dragArea"],
+[class*="QGTnaluzDSScJ7wCszV2cQ=="],
+[class*="_3p8l5cg8UBHwGZrvsU0tMg=="] {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  position: absolute !important;
+  top: -9999px !important;
+  /* left: -9999px !important; */
 }

@@ -25,24 +25,24 @@ export default function SideBar() {
     if (hideOnRoutes.includes(pathname)) return null;
 
     const menuItem = [
-        { icon: Home, label: 'Home', href: '/movie/home', active: true },
-        { icon: Compass, label: 'Discover', href: '/movie/discover', active: false },
-        { icon: Award, label: 'Awards', href: '/movie/awards', active: false },
-        { icon: Users, label: 'Celebrities', href: '/movie/celebrities', active: false },
+        { icon: Home, label: 'Home', href: '/movie/home' },
+        { icon: Compass, label: 'Discover', href: '/movie/discover' },
+        { icon: Award, label: 'Awards', href: '/movie/awards' },
+        { icon: Users, label: 'Celebrities', href: '/movie/celebrities' },
     ]
 
     const libraryItem = [
-        { icon: Clock, label: 'Recent', href: '/movie/recent', active: false },
-        { icon: Star, label: 'Top Rated', href: '/movie/top-rated', active: false },
-        { icon: Download, label: 'Downloaded', href: '/movie/downloaded', active: false },
-        { icon: PlaySquare, label: 'Playlist', href: '/movie/playlist', active: false },
-        { icon: PlaySquare, label: 'Watchlist', href: '/movie/watchlist', active: false },
-        { icon: PlaySquare, label: 'Completed', href: '/movie/completed', active: false },
+        { icon: Clock, label: 'Recent', href: '/movie/recent' },
+        { icon: Star, label: 'Top Rated', href: '/movie/top-rated' },
+        { icon: Download, label: 'Downloaded', href: '/movie/downloaded' },
+        { icon: PlaySquare, label: 'Playlist', href: '/movie/playlist' },
+        { icon: PlaySquare, label: 'Watchlist', href: '/movie/watchlist' },
+        { icon: PlaySquare, label: 'Completed', href: '/movie/completed' },
     ]
 
     const generalItem = [
-        { icon: Settings, label: 'Settings', href: '/movie/settings', active: false },
-        { icon: LogOut, label: 'Logout', href: '/movie/logout', active: false },
+        { icon: Settings, label: 'Settings', href: '/movie/settings' },
+        { icon: LogOut, label: 'Logout', href: '/movie/logout' },
     ]
     return (
         <div className="flex flex-col w-[300px] h-full bg-[#21242D] overflow-y-auto scrollbar-hide" >
@@ -58,7 +58,7 @@ export default function SideBar() {
                         <Link
                             key={item.label}
                             href={item.href}
-                            className={`flex items-center gap-3 px-2 py-2.5 rounded-lg text-sm font-medium transition-colors ${item.active
+                            className={`flex items-center gap-3 px-2 py-2.5 rounded-lg text-sm font-medium transition-colors ${pathname === item.href
                                 ? 'text-[#00B9AF]'
                                 : 'text-gray-400 hover:text-white hover:bg-white/5'}`}
                         >
@@ -73,8 +73,8 @@ export default function SideBar() {
                         <Link
                             key={item.label}
                             href={item.href}
-                            className={`flex item-center gap-3 px-2 py-2.5 rounded-lg text-sm font-medium transition-colors ${item.active
-                                ? 'text-accent'
+                            className={`flex item-center gap-3 px-2 py-2.5 rounded-lg text-sm font-medium transition-colors ${pathname === item.href
+                                ? 'text-[#00B9AF]'
                                 : 'text-gray-400 hover:text-white hover:bg-white/5'}`}
                         >
                             <item.icon size={20} />
@@ -88,8 +88,8 @@ export default function SideBar() {
                         <Link
                             key={item.label}
                             href={item.href}
-                            className={`flex item-center gap-3 px-2 py-2.5 rounded-lg text-sm font-medium transition-colors ${item.active
-                                ? 'text-accent'
+                            className={`flex item-center gap-3 px-2 py-2.5 rounded-lg text-sm font-medium transition-colors ${pathname === item.href
+                                ? 'text-[#00B9AF]'
                                 : 'text-gray-400 hover:text-white hover:bg-white/5'}`}
                         >
                             <item.icon size={20} />
