@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Martian_Mono, Schibsted_Grotesk } from "next/font/google";
 import "./globals.css";
+import {redirect} from 'next/navigation'
 
 
 const schibstedGrotesk = Schibsted_Grotesk({
@@ -30,6 +31,8 @@ export default function RootLayout({
       >
        
           {children}
+          {/* redirect('/movie') */}
+
        
         {/* <div className="h-screen  bg-black" >
           {children}
