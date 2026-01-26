@@ -100,7 +100,7 @@ body {
   }
 
   body {
-    @apply bg-white  text-black;
+    @apply bg-white text-black;
 
   }
 }
@@ -135,4 +135,12 @@ body {
   position: absolute !important;
   top: -9999px !important;
   /* left: -9999px !important; */
+}
+
+@layer base {
+
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
 }

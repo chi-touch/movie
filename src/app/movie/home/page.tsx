@@ -96,9 +96,8 @@ export default function Home() {
             <div>
               <h2 className="text-xl font-bold text-white mb-6">Popular on TinyMoviez</h2>
               <PopularMovies />
-              <PopularMovies />
-              {/* <PopularMovies />
-           <PopularMovies /> */}
+              {/* <PopularMovies /> */}
+             
 
             </div>
           </TabsContent>
