@@ -1,6 +1,6 @@
 import React from "react";
-import SideBar from "@/component/sidebarfolder/SideBar";
-import RightBar from "@/component/rightside/RightBar";
+import SideBar from "@/components/sidebarfolder/SideBar";
+import RightBar from "@/components/rightside/RightBar";
 
 export default function MovieLayout({
     children,
@@ -9,7 +9,7 @@ export default function MovieLayout({
 }) {
     return (
         <div className="flex h-screen bg-black">
-            <SideBar /> 
+            <SideBar />
             <main className="flex-1 overflow-y-auto no-scrollbar ">
                 <div className="px-8">
                     {children}

@@ -1,8 +1,8 @@
 "use client"
-import TopVideo from "@/component/re-useable-component/topVideo"
+import TopVideo from "@/components/re-useable-component/topVideo"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Search, Filter, ChevronLeft, ChevronRight, Plus, Star, Play } from "lucide-react"
-import PopularMovies from "@/component/re-useable-component/popularMovies"
+import PopularMovies from "@/components/re-useable-component/popularMovies"
 import Image from "next/image"
 
 export default function Home() {
@@ -66,49 +66,49 @@ export default function Home() {
     // <div className="h-full flex flex-col gap-8">
 
 
-      <div className="flex-1 flex flex-col gap-8 min-h-0">
+    <div className="flex-1 flex flex-col gap-8 min-h-0">
 
 
-        <Tabs defaultValue="movies">
-          <TabsList
-        
-            // className="text-white bg-black"
-            className="sticky top-0 z-10 bg-black pt-4 pb-2 w-full py-10 rounded-none">
-          
+      <Tabs defaultValue="movies">
+        <TabsList
 
-            <TabsTrigger value="movies">Movie</TabsTrigger>
-            <TabsTrigger value="tv show">TV Shows</TabsTrigger>
-            <TabsTrigger value="anime">Anime</TabsTrigger>
+          // className="text-white bg-black"
+          className="sticky top-0 z-10 bg-black pt-4 pb-2 w-full py-10 rounded-none">
 
-              <div className="relative w-80 left-8">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" size={18} />
-          <input
-            type="text"
-            placeholder="Search"
-            className="w-60 bg-[#21242D] text-white pl-10 pr-10 py-3 rounded-xl outline-none focus:ring-1 focus:ring-teal-400/50 text-sm font-medium placeholder-gray-500"
-          />
-          <Filter className="absolute right-24 top-1/2 -translate-y-1/2 text-gray-400 cursor-pointer hover:text-white" size={18} />
-        </div>
-          </TabsList>
-          <div>
-            <TabsContent value="movies">
-               <TopVideo />
-               <div>
-        <h2 className="text-xl font-bold text-white mb-6">Popular on TinyMoviez</h2>
-        <PopularMovies />
-         <PopularMovies />
-          {/* <PopularMovies />
-           <PopularMovies /> */}
-       
-      </div>
-            </TabsContent>
-            <TabsContent value="tv show">
-              <TopVideo />
-            </TabsContent>
+
+          <TabsTrigger value="movies">Movie</TabsTrigger>
+          <TabsTrigger value="tv show">TV Shows</TabsTrigger>
+          <TabsTrigger value="anime">Anime</TabsTrigger>
+
+          <div className="relative w-80 left-8">
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" size={18} />
+            <input
+              type="text"
+              placeholder="Search"
+              className="w-60 bg-[#21242D] text-white pl-10 pr-10 py-3 rounded-xl outline-none focus:ring-1 focus:ring-teal-400/50 text-sm font-medium placeholder-gray-500"
+            />
+            <Filter className="absolute right-24 top-1/2 -translate-y-1/2 text-gray-400 cursor-pointer hover:text-white" size={18} />
           </div>
-        </Tabs>
+        </TabsList>
+        <div>
+          <TabsContent value="movies">
+            <TopVideo />
+            <div>
+              <h2 className="text-xl font-bold text-white mb-6">Popular on TinyMoviez</h2>
+              <PopularMovies />
+              <PopularMovies />
+              {/* <PopularMovies />
+           <PopularMovies /> */}
 
-      </div>
+            </div>
+          </TabsContent>
+          <TabsContent value="tv show">
+            <TopVideo />
+          </TabsContent>
+        </div>
+      </Tabs>
+
+    </div>
 
     // </div>
   )

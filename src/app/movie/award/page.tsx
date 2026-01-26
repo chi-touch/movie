@@ -1,4 +1,4 @@
-import PopularMovies from "@/component/re-useable-component/popularMovies"
+import PopularMovies from "@/components/re-useable-component/popularMovies"
 
 const Page = () => {
     return (

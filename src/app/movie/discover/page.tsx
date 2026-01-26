@@ -1,4 +1,4 @@
-import ContinueWatching from "@/component/re-useable-component/continueWatching"
+import ContinueWatching from "@/components/re-useable-component/continueWatching"
 
 const Page = () => {
     return (
