@@ -1,10 +1,14 @@
 import Image from 'next/image'
-import { forwardRef, useImperativeHandle, useRef } from 'react'
+import { forwardRef, useEffect, useImperativeHandle, useRef, useState } from 'react'
 
-interface GenresItem {
+interface Movie {
     id: number
     title: string
-    image: string
+    poster_path: string
+    vote_average: number
+    release_date: string
+    genre_ids: number[]
+    image:string
 }
 
 export interface GenresRef {
@@ -15,18 +19,35 @@ export interface GenresRef {
 const Genres = forwardRef<GenresRef>((props, ref) => {
     const scrollContainerRef = useRef<HTMLDivElement>(null);
 
-    const genres: GenresItem[] = [
-        { id: 1, title: 'Drama', image: '/myPic.jpg' },
-        { id: 2, title: 'Comedy', image: '/myPic.jpg' },
-        { id: 3, title: 'Action', image: '/myPic.jpg' },
-        { id: 4, title: 'Horror', image: '/myPic.jpg' },
-        { id: 5, title: 'Suspense', image: '/myPic.jpg' },
-        { id: 6, title: 'Sitcom', image: '/myPic.jpg' },
-        { id: 7, title: 'Supernatural', image: '/myPic.jpg' },
-        { id: 8, title: 'Anime', image: '/myPic.jpg' },
-        { id: 9, title: 'Sci-Fi', image: '/myPic.jpg' },
-        { id: 10, title: 'Science', image: '/myPic.jpg' },
-    ]
+    const [movies, setMovies] = useState<Movie[]>([])
+    const [loading, setLoading] = useState(true)
+    const [error, setError] = useState<string | null>(null)
+
+    useEffect(() => {
+        const fetchMovies = async () => {
+            try {
+                setLoading(true)
+                const API_KEY = process.env.NEXT_PUBLIC_TMDB_API_KEY
+                
+                const response = await fetch(
+                    `https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}`
+                )
+                
+                if (!response.ok) {
+                    throw new Error(`Failed to fetch: ${response.status}`)
+                }
+                
+                const data = await response.json()
+                setMovies(data.results)
+            } catch (err) {
+                setError(err instanceof Error ? err.message : "Failed to fetch movies")
+            } finally {
+                setLoading(false)
+            }
+        }
+        
+        fetchMovies()
+    }, [])
 
     useImperativeHandle(ref, () => ({
         scrollNext: () => {
@@ -42,13 +63,19 @@ const Genres = forwardRef<GenresRef>((props, ref) => {
     }));
 
     return (
-        <div
+        <div>
+            {loading ? (
+                <p className="text-white text-[18px]">Loading...</p>
+            ) : error ? (
+                <p>Error: {error}</p>
+            ) : (
+            <div
             ref={scrollContainerRef}
             className="grid grid-rows-2 grid-flow-col overflow-x-auto no-scrollbar relative gap-4 pb-1 scroll-smooth"
         >
-            {genres.map((item) => (
+            {movies.map((item: any) => (
                 <div key={item.id} className="w-[150px] h-[120px] bg-[#2b2d38] rounded-3xl overflow-hidden relative shrink-0 group">
-                    <Image src={item.image} alt={item.title} fill className="object-cover transition-transform group-hover:scale-105" />
+                    <Image src={`https://image.tmdb.org/t/p/w500${item.poster_path}`} alt={item.title} fill className="object-cover transition-transform group-hover:scale-105" />
                     <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors" />
 
                     <div className="absolute inset-0 flex items-center justify-center">
@@ -56,6 +83,9 @@ const Genres = forwardRef<GenresRef>((props, ref) => {
                     </div>
                 </div>
             ))}
+        </div>
+            )}
+            
         </div>
     )
 })
