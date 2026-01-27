@@ -20,7 +20,7 @@ import {
 export default function SideBar() {
     const pathname = usePathname();
 
-    // Pages where SideBar should be hidden
+    
     const hideOnRoutes = ['/movie/awards'];
     if (hideOnRoutes.includes(pathname)) return null;
 
@@ -45,7 +45,7 @@ export default function SideBar() {
         { icon: LogOut, label: 'Logout', href: '/movie/logout' },
     ]
     return (
-        <div className="flex flex-col w-[300px] h-full bg-[#21242D] overflow-y-auto scrollbar-hide" >
+        <div className="flex flex-col w-[300px] h-full bg-[#21242D] overflow-y-auto scrollbar-hide py-10" >
             <div className="mb-5 ml-10">
                 <h1 className="text-2xl font-black tracking-tighter text-white">TINY<br />
                     <span className="text-white text-lg font-bold">MOVIEZ</span> </h1>

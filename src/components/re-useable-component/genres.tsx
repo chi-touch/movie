@@ -47,7 +47,7 @@ const Genres = forwardRef<GenresRef>((props, ref) => {
             className="grid grid-rows-2 grid-flow-col overflow-x-auto no-scrollbar relative gap-4 pb-1 scroll-smooth"
         >
             {genres.map((item) => (
-                <div key={item.id} className="w-[150px] h-[100px] bg-[#2b2d38] rounded-3xl overflow-hidden relative shrink-0 group">
+                <div key={item.id} className="w-[150px] h-[120px] bg-[#2b2d38] rounded-3xl overflow-hidden relative shrink-0 group">
                     <Image src={item.image} alt={item.title} fill className="object-cover transition-transform group-hover:scale-105" />
                     <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors" />
 

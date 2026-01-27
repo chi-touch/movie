@@ -97,7 +97,7 @@ export default function Home() {
               <h2 className="text-xl font-bold text-white mb-6">Popular on TinyMoviez</h2>
               <PopularMovies />
               {/* <PopularMovies /> */}
-             
+
 
             </div>
           </TabsContent>
