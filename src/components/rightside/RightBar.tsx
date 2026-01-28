@@ -1,11 +1,12 @@
 "use client"
 import React, { useState, useRef } from 'react'
-import { Bell, ChevronRight, ChevronLeft, ChevronDown, Plus, X } from 'lucide-react'
+import { Bell, ChevronDown, Plus, X } from 'lucide-react'
 import Image from 'next/image'
 import ContinueWatching, { ContinueWatchingRef } from '../re-useable-component/continueWatching'
 import TopRatedComponent, { TopRatedRef } from '../re-useable-component/topRatedComponent'
 import Genres, { GenresRef } from '../re-useable-component/genres'
 import SectionHeader from '../re-useable-component/SectionHeader'
+import Card from '../re-useable-component/card'
 
 export default function RightBar() {
     const [isProfileOpen, setIsProfileOpen] = useState(false)
@@ -16,7 +17,7 @@ export default function RightBar() {
     return (
         <div className="w-[300px] bg-[#2b2d38] h-full flex flex-col  p-5 border-l border-white/5 overflow-y-auto no-scrollbar">
 
-            {isProfileOpen && (
+            {/* {isProfileOpen && (
                 <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm animate-in fade-in duration-200">
                     <div className="bg-[#1a1c22] w-[400px] p-8 rounded-3xl border border-white/10 shadow-2xl animate-in zoom-in-95 duration-200">
                         <div className="flex justify-between items-center mb-6">
@@ -40,12 +41,13 @@ export default function RightBar() {
                         </form>
                     </div>
                 </div>
-            )}
+            )} */}
 
+            <Card />
             <div className="flex items-center justify-between mb-8">
                 <button className="p-3 rounded-2xl bg-[#4c4f56] text-gray-400 hover:text-white transition-colors relative">
                     <Bell size={20} />
-                    <span className="absolute top-3 right-3 w-2 h-2 bg-red-500 rounded-full border border-[#2b2d38]" />
+                    <span className="absolute top-3 right-3 w-2 h-2 bg-blue-500 rounded-full border border-[#2b2d38]" />
                 </button>
                 <div className="flex items-center gap-3">
                     <div className='flex items-center gap-1 cursor-pointer text-white' onClick={() => setIsProfileOpen(true)}>
@@ -53,10 +55,10 @@ export default function RightBar() {
                         <ChevronDown size={16} />
                     </div>
                     <div
-                        className="w-10 h-10 rounded-full bg-yellow-500 overflow-hidden relative border-2 border-[#2b2d38] cursor-pointer hover:border-white transition-colors"
-                        onClick={() => setIsProfileOpen(true)}
+                        className="w-7 h-7  bg-yellow-500 overflow-hidden relative border-2 border-[#2b2d38] cursor-pointer hover:border-white transition-colors"
+                        onClick={() => <Card />}
                     >
-                        <div className="w-full h-full rounded-full bg-gray-800 overflow-hidden relative">
+                        <div className="w-full h-full  bg-gray-800 overflow-hidden relative">
                             <Image src="/myPic.jpg" alt="pic" width={100} height={100} className="bg-gray-700" />
                         </div>
                     </div>
